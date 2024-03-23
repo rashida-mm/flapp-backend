@@ -5,6 +5,7 @@ const usercontroller = require('../Controllers/userController')
 const flightController = require('../Controllers/flightController')
 const jwtMiddleware = require('../Middlewares/jwtMiddleware')
 const multerConfig = require('../Middlewares/multerMiddleware')
+const bookingController = require('../Controllers/bookingController')
 
 //create a router object for defining the paths
 const router = new express.Router()
@@ -29,5 +30,12 @@ router.put('/flight/update-flights/:id',jwtMiddleware,multerConfig.single('airli
 
 //delet Flight
 router.delete('/flight/delete-flights/:fid',jwtMiddleware,flightController.deleteAdminFlights)
+
+
+//add booking API
+router.post('/payment/book-flight',jwtMiddleware,multerConfig.single('airlineLogo'), bookingController.addBooking)
+
+//get booking
+router.get('/profile/get-booking',jwtMiddleware,bookingController.getBookings)
 
 module.exports=router

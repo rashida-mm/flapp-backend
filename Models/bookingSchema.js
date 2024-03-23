@@ -4,8 +4,6 @@ const mongoose = require('mongoose');
 
 const bookingSchema = new mongoose.Schema({
   userId: { type: mongoose.Schema.Types.ObjectId, ref: 'users' },
-  fullName: String,
-  contactNumber: String,
   flight: {
     airline: String,
     flightNumber: String,
@@ -20,8 +18,11 @@ const bookingSchema = new mongoose.Schema({
     duration: String,
     layover: String
   },
+  passengerDetails: [{ // Array of passenger details
+    fullName: String,
+    contactNumber: String
+  }]
 });
 
-// Create Booking Model
-const Booking = mongoose.model('Booking', bookingSchema);
-
+const bookings = mongoose.model("bookings",bookingSchema)
+    module.exports=bookings

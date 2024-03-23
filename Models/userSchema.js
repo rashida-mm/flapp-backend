@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
         enum: ['user', 'admin'], // Define possible roles
         default: 'user', // Default role is 'user'
       },
-      bookings: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Booking' }],
+      bookings: [{ type: mongoose.Schema.Types.ObjectId, ref: 'bookings' }],
     });
 
     const users = mongoose.model("users",userSchema)
